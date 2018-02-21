@@ -10,6 +10,8 @@ import SpriteKit
 import GameplayKit
 import UIKit
 
+typealias Position = (Int,Int)
+
 enum NodeNames : String {
     case playButton = "com.mdevsa.snake.play_button"
     case gameBackground = "com.mdevsa.snake.game_background"
@@ -54,8 +56,8 @@ class GameScene: SKScene {
     }()
     
     fileprivate var game: GameManager!
-    fileprivate var playerPosition: [(Int,Int)] = []
-    fileprivate var gameArray: [(node:SKShapeNode, x:Int, y:Int)] = []
+    private(set) var playerPosition: [Position] = []
+    private(set) var gameArray: [(node:SKShapeNode, x:Int, y:Int)] = []
 }
 
 
@@ -64,13 +66,13 @@ extension GameScene {
     override func didMove(to view: SKView) {
         self.initializeMenu()
         
-        self.game = GameManager()
+        self.game = GameManager(scene: self)
         
         self.initializeGameView()
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
+        self.game.update(time: currentTime)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -110,7 +112,8 @@ extension GameScene {
     }
     
     fileprivate func startGame(){
-       self.animateLabels()
+        self.animateLabels()
+        self.game.initGame()
     }
     
     fileprivate func animateLabels() {
@@ -131,7 +134,16 @@ extension GameScene {
             self.gameBackground.run(SKAction.scale(to: 1, duration: 0.3))
             self.currentScoreLabel.run(SKAction.scale(to: 1, duration: 0.5))
         }
-        
+    }
+    
+    func apendPlayerPosition(positions: [Position]) {
+        for position in positions {
+            self.playerPosition.append(position)
+        }
+    }
+    
+    func setPlayerPosition(at index: Int, to value: Position) {
+        self.playerPosition[index] = value
     }
 }
 

@@ -88,12 +88,12 @@
 				013E9F6B203CA41300CA6F37 /* AppDelegate.swift */,
 				013E9F6D203CA41300CA6F37 /* GameScene.sks */,
 				013E9F71203CA41300CA6F37 /* GameScene.swift */,
+				013E9F91203CA4A800CA6F37 /* GameManager.swift */,
 				013E9F73203CA41300CA6F37 /* GameViewController.swift */,
 				013E9F75203CA41300CA6F37 /* Main.storyboard */,
 				013E9F78203CA41300CA6F37 /* Assets.xcassets */,
 				013E9F7A203CA41300CA6F37 /* LaunchScreen.storyboard */,
 				013E9F7D203CA41300CA6F37 /* Info.plist */,
-				013E9F91203CA4A800CA6F37 /* GameManager.swift */,
 				013E9F93203CA79900CA6F37 /* NodeBuilder.swift */,
 			);
 			path = Snake;
